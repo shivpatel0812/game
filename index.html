@@ -7,7 +7,17 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body class="hub-page">
-    <div class="hub-container">
+    <div id="password-screen" class="password-screen">
+        <div class="password-container">
+            <h2 class="password-title">🔒 Secret Access</h2>
+            <p class="password-subtitle">Enter the secret code to continue</p>
+            <input type="password" id="secret-code" class="secret-input" placeholder="Enter code..." autofocus>
+            <p id="error-message" class="error-message hidden"></p>
+            <button id="submit-code" class="submit-btn">Enter</button>
+        </div>
+    </div>
+    
+    <div id="hub-content" class="hub-container hidden">
         <div class="hub-header">
             <div class="hub-icon">🎮</div>
             <h1 class="hub-title">Ananya Game Hub</h1>
@@ -28,5 +38,35 @@
         
         <button class="help-btn" title="Help">?</button>
     </div>
+    
+    <script>
+        const SECRET_CODE = 'shiv&Ananya-143'; // Secret code
+        
+        const passwordScreen = document.getElementById('password-screen');
+        const hubContent = document.getElementById('hub-content');
+        const secretInput = document.getElementById('secret-code');
+        const submitBtn = document.getElementById('submit-code');
+        const errorMessage = document.getElementById('error-message');
+        
+        function checkCode() {
+            const enteredCode = secretInput.value.trim();
+            if (enteredCode === SECRET_CODE) {
+                passwordScreen.classList.add('hidden');
+                hubContent.classList.remove('hidden');
+            } else {
+                errorMessage.textContent = 'Incorrect code. Try again!';
+                errorMessage.classList.remove('hidden');
+                secretInput.value = '';
+                secretInput.focus();
+            }
+        }
+        
+        submitBtn.addEventListener('click', checkCode);
+        secretInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                checkCode();
+            }
+        });
+    </script>
 </body>
 </html>
