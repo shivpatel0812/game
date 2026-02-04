@@ -123,6 +123,17 @@ function initLevel(levelData, gameState) {
         }
     });
 
+    // Spawn chaser bot in extreme mode
+    if (gameState.difficulty === 'extreme') {
+        gameState.chaserBot = new ChaserBot(
+            modifiedLevelData.startX - 50,
+            modifiedLevelData.startY
+        );
+        gameState.chaserBot.speedLevel = gameState.botSpeed || 3;
+    } else {
+        gameState.chaserBot = null;
+    }
+
     // Update UI
     document.getElementById('hearts-count').textContent = gameState.collectedHearts;
     document.getElementById('hearts-total').textContent = gameState.totalHearts;

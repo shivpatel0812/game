@@ -23,6 +23,11 @@
                     <button class="difficulty-btn" data-difficulty="easy">Easy</button>
                     <button class="difficulty-btn active" data-difficulty="medium">Medium</button>
                     <button class="difficulty-btn" data-difficulty="hard">Hard</button>
+                    <button class="difficulty-btn" data-difficulty="extreme">Extreme</button>
+                </div>
+                <div id="bot-speed-setting" class="bot-speed-setting hidden">
+                    <label for="bot-speed">Bot Speed: <span id="bot-speed-value">3</span></label>
+                    <input type="range" id="bot-speed" min="1" max="10" value="3">
                 </div>
             </div>
             <button id="start-btn">Start Game</button>
@@ -34,6 +39,7 @@
                 <button id="yes-btn">Yes! 💖</button>
                 <button id="no-btn">No</button>
             </div>
+            <button id="exit-btn-reveal" class="exit-btn-menu">← Back to Hub</button>
         </div>
     </div>
     <script src="js/config.js"></script>

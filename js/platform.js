@@ -1,4 +1,4 @@
-// Platform Class
+
 class Platform {
     constructor(x, y, width, height, color = '#8B4513') {
         this.x = x;
@@ -14,7 +14,7 @@ class Platform {
         ctx.fillStyle = this.color;
         ctx.fillRect(0, 0, this.width, this.height);
         
-        // Simple highlight
+
         ctx.fillStyle = 'rgba(255, 255, 255, 0.2)';
         ctx.fillRect(0, 0, this.width, 3);
         ctx.restore();

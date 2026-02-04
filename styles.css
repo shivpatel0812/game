@@ -123,14 +123,15 @@ body:not(.hub-page) {
 
 .difficulty-buttons {
     display: flex;
-    gap: 15px;
+    gap: 10px;
     justify-content: center;
     margin-bottom: 20px;
+    flex-wrap: wrap;
 }
 
 .difficulty-btn {
-    padding: 12px 30px;
-    font-size: 16px;
+    padding: 10px 20px;
+    font-size: 14px;
     background: rgba(255, 255, 255, 0.2);
     color: white;
     border: 2px solid rgba(255, 255, 255, 0.3);
@@ -138,6 +139,7 @@ body:not(.hub-page) {
     cursor: pointer;
     transition: all 0.3s;
     font-weight: bold;
+    min-width: 80px;
 }
 
 .difficulty-btn:hover {
@@ -149,6 +151,54 @@ body:not(.hub-page) {
     background: linear-gradient(135deg, #ff6b6b, #ee5a6f);
     border-color: rgba(255, 255, 255, 0.5);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.bot-speed-setting {
+    margin-top: 20px;
+    padding: 15px 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.bot-speed-setting.hidden {
+    display: none;
+}
+
+.bot-speed-setting label {
+    font-size: 16px;
+    color: #ffd700;
+}
+
+.bot-speed-setting input[type="range"] {
+    width: 100%;
+    height: 8px;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.3);
+    outline: none;
+    -webkit-appearance: none;
+}
+
+.bot-speed-setting input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ff6b6b, #ee5a6f);
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.bot-speed-setting input[type="range"]::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ff6b6b, #ee5a6f);
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }
 
 #instructions {

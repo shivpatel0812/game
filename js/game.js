@@ -30,7 +30,9 @@ const gameState = {
     camera: { x: 0, y: 0 },
     fallingObstacleTimer: 0,
     fallingObstacleInterval: 120, // Spawn every 2 seconds at 60fps
-    difficulty: 'medium' // easy, medium, hard
+    difficulty: 'medium', // easy, medium, hard, extreme
+    chaserBot: null,
+    botSpeed: 3 // 1-10 scale for bot speed
 };
 
 // Restart game function
@@ -42,6 +44,15 @@ function restartGame() {
         initLevel(gameState.currentLevel, gameState);
         gameState.fallingObstacles = [];
         gameState.fallingObstacleTimer = 0;
+        
+        // Respawn chaser bot in extreme mode
+        if (gameState.difficulty === 'extreme' && gameState.currentLevel) {
+            gameState.chaserBot = new ChaserBot(
+                gameState.currentLevel.startX - 50,
+                gameState.currentLevel.startY
+            );
+            gameState.chaserBot.speedLevel = gameState.botSpeed || 3;
+        }
         
         // In easy mode, preserve collected hearts
         if (gameState.difficulty === 'easy') {
@@ -90,6 +101,17 @@ function gameLoop() {
         // Update
         gameState.player.update(gameState.platforms, gameState.currentLevel, canvas, restartGame);
         
+        // Update chaser bot in extreme mode
+        if (gameState.difficulty === 'extreme' && gameState.chaserBot) {
+            gameState.chaserBot.update(
+                gameState.player,
+                gameState.platforms,
+                gameState.currentLevel,
+                canvas,
+                restartGame
+            );
+        }
+        
         // Update hearts with collection callback
         gameState.hearts.forEach(h => {
             h.update(
@@ -128,6 +150,9 @@ function gameLoop() {
         gameState.fallingObstacles.forEach(o => o.draw(ctx, gameState.camera));
         gameState.hearts.forEach(h => h.draw(ctx, gameState.camera));
         gameState.player.draw(ctx, gameState.camera);
+        if (gameState.difficulty === 'extreme' && gameState.chaserBot) {
+            gameState.chaserBot.draw(ctx, gameState.camera);
+        }
         drawParticles(ctx, gameState.particles);
 
         // Update UI
@@ -152,7 +177,23 @@ document.querySelectorAll('.difficulty-btn').forEach(btn => {
         document.querySelectorAll('.difficulty-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         gameState.difficulty = btn.dataset.difficulty;
+        
+        // Show/hide bot speed slider for Extreme mode
+        const botSpeedSetting = document.getElementById('bot-speed-setting');
+        if (gameState.difficulty === 'extreme') {
+            botSpeedSetting.classList.remove('hidden');
+        } else {
+            botSpeedSetting.classList.add('hidden');
+        }
     });
+});
+
+// Bot speed slider
+const botSpeedSlider = document.getElementById('bot-speed');
+const botSpeedValue = document.getElementById('bot-speed-value');
+botSpeedSlider.addEventListener('input', () => {
+    botSpeedValue.textContent = botSpeedSlider.value;
+    gameState.botSpeed = parseInt(botSpeedSlider.value);
 });
 
 // Event Listeners
@@ -181,6 +222,10 @@ document.getElementById('exit-btn').addEventListener('click', () => {
 });
 
 document.getElementById('exit-btn-menu').addEventListener('click', () => {
+    window.location.href = 'index.html';
+});
+
+document.getElementById('exit-btn-reveal').addEventListener('click', () => {
     window.location.href = 'index.html';
 });
 
