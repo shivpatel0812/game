@@ -11,12 +11,22 @@
         <canvas id="gameCanvas"></canvas>
         <div id="ui">
             <div id="hearts-counter">Hearts: <span id="hearts-count">0</span>/<span id="hearts-total">0</span></div>
+            <button id="exit-btn" class="exit-btn">✕ Exit</button>
         </div>
         <div id="instructions">Use Arrow Keys or WASD to move and jump</div>
         <div id="menu" class="screen">
             <h1>💖 Heart Collector 💖</h1>
             <p>Run, jump, and collect hearts!</p>
+            <div class="difficulty-selector">
+                <h3>Select Difficulty:</h3>
+                <div class="difficulty-buttons">
+                    <button class="difficulty-btn" data-difficulty="easy">Easy</button>
+                    <button class="difficulty-btn active" data-difficulty="medium">Medium</button>
+                    <button class="difficulty-btn" data-difficulty="hard">Hard</button>
+                </div>
+            </div>
             <button id="start-btn">Start Game</button>
+            <button id="exit-btn-menu" class="exit-btn-menu">← Back to Hub</button>
         </div>
         <div id="valentine-reveal" class="screen hidden">
             <div id="valentine-text"></div>

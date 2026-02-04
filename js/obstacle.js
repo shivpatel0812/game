@@ -40,3 +40,52 @@ class BouncyBlob {
     }
 }
 
+class FallingObstacle {
+    constructor(x, y, speed = 3) {
+        this.x = x;
+        this.y = y;
+        this.width = 30;
+        this.height = 30;
+        this.vy = speed;
+        this.color = '#FF4444';
+        this.rotation = 0;
+    }
+
+    update(player, canvas, onHit) {
+        // Fall down
+        this.y += this.vy;
+        this.rotation += 0.1;
+        
+        // Check collision with player
+        if (player && player.checkCollision(this)) {
+            if (onHit) {
+                onHit();
+            }
+        }
+        
+        // Remove if off screen
+        return this.y < canvas.height + 100;
+    }
+
+    draw(ctx, camera) {
+        ctx.save();
+        ctx.translate(this.x - camera.x + this.width / 2, this.y - camera.y + this.height / 2);
+        ctx.rotate(this.rotation);
+        ctx.translate(-this.width / 2, -this.height / 2);
+        
+        ctx.fillStyle = this.color;
+        ctx.beginPath();
+        ctx.moveTo(this.width / 2, 0);
+        ctx.lineTo(this.width, this.height);
+        ctx.lineTo(0, this.height);
+        ctx.closePath();
+        ctx.fill();
+        
+        ctx.strokeStyle = '#CC0000';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+        
+        ctx.restore();
+    }
+}
+

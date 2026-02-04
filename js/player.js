@@ -12,7 +12,7 @@ class Player {
         this.color = '#FF6B9D';
     }
 
-    update(platforms, currentLevel, canvas) {
+    update(platforms, currentLevel, canvas, onFall) {
         // Horizontal movement
         let moveX = 0;
         if (keys['arrowleft'] || keys['a']) moveX -= CONFIG.PLAYER_SPEED;
@@ -78,11 +78,10 @@ class Player {
             this.vx = 0;
         }
         if (this.y + this.height > canvas.height) {
-            // Respawn
-            this.x = currentLevel.startX;
-            this.y = currentLevel.startY;
-            this.vx = 0;
-            this.vy = 0;
+            // Restart game
+            if (onFall) {
+                onFall();
+            }
         }
 
         // Limit fall speed

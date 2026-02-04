@@ -20,8 +20,8 @@ class Heart {
 
         this.animationTime += 0.1;
 
-        // Runaway heart behavior
-        if (this.type === 'runaway' && player) {
+        // Runaway heart behavior (disabled in easy mode)
+        if (this.type === 'runaway' && player && window.gameState && window.gameState.difficulty !== 'easy') {
             const dx = this.x - player.x;
             const dy = this.y - player.y;
             const distance = Math.sqrt(dx * dx + dy * dy);
