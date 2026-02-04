@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart Collector</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="game-container">
+        <canvas id="gameCanvas"></canvas>
+        <div id="ui">
+            <div id="hearts-counter">Hearts: <span id="hearts-count">0</span>/<span id="hearts-total">0</span></div>
+        </div>
+        <div id="instructions">Use Arrow Keys or WASD to move and jump</div>
+        <div id="menu" class="screen">
+            <h1>💖 Heart Collector 💖</h1>
+            <p>Run, jump, and collect hearts!</p>
+            <button id="start-btn">Start Game</button>
+        </div>
+        <div id="valentine-reveal" class="screen hidden">
+            <div id="valentine-text"></div>
+            <div id="valentine-buttons" class="hidden">
+                <button id="yes-btn">Yes! 💖</button>
+                <button id="no-btn">No</button>
+            </div>
+        </div>
+    </div>
+    <script src="js/config.js"></script>
+    <script src="js/input.js"></script>
+    <script src="js/player.js"></script>
+    <script src="js/heart.js"></script>
+    <script src="js/platform.js"></script>
+    <script src="js/obstacle.js"></script>
+    <script src="js/level.js"></script>
+    <script src="js/camera.js"></script>
+    <script src="js/particles.js"></script>
+    <script src="js/reveal.js"></script>
+    <script src="js/game.js"></script>
+</body>
+</html>
+
