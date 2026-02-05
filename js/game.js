@@ -194,6 +194,10 @@ const botSpeedValue = document.getElementById('bot-speed-value');
 botSpeedSlider.addEventListener('input', () => {
     botSpeedValue.textContent = botSpeedSlider.value;
     gameState.botSpeed = parseInt(botSpeedSlider.value);
+    // Update bot's speedLevel in real-time if bot exists
+    if (gameState.chaserBot) {
+        gameState.chaserBot.speedLevel = gameState.botSpeed;
+    }
 });
 
 // Event Listeners

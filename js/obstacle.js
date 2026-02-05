@@ -100,7 +100,8 @@ class ChaserBot {
         this.onGround = false;
         this.jumpCooldown = 0;
         this.color = '#FF0000';
-        this.baseSpeed = CONFIG.PLAYER_SPEED;
+        // Store player speed as a fixed value, independent of CONFIG changes
+        this.baseSpeed = 5; // Fixed base speed (same as CONFIG.PLAYER_SPEED but independent)
         this.speedLevel = 3; // Will be set from gameState.botSpeed (1-10)
         this.chaseDelay = 120; // Start chasing after 2 seconds
         this.chaseTimer = 0;
