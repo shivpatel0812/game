@@ -7,7 +7,7 @@ class Platform {
         this.height = height;
         this.color = color;
     }
-
+//
     draw(ctx, camera) {
         ctx.save();
         ctx.translate(this.x - camera.x, this.y - camera.y);
