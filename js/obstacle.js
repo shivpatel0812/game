@@ -121,8 +121,9 @@ class ChaserBot {
         const dx = player.x - this.x;
         const dy = player.y - this.y;
 
-        // Calculate speed based on speedLevel (1-10): 1 = 10%, 10 = 100% of player speed
-        const speed = this.baseSpeed * (this.speedLevel / 10);
+        // Calculate speed based on speedLevel (1-10): 
+        // Level 1 = 20% player speed, Level 5 = 100% player speed, Level 10 = 200% player speed
+        const speed = this.baseSpeed * (this.speedLevel / 5);
 
         // Horizontal movement toward player
         let moveX = 0;
